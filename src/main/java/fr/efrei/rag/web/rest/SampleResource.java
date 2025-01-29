@@ -15,6 +15,6 @@ public class SampleResource {
 
     @GetMapping("/samples/dto/{value}")
     public Sample helloJson(@PathVariable(value = "value", required = false) final String value) {
-        return new Sample("Hello" + value + "!");
+        return new Sample("Hello " + value + "!");
     }
 }
