@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class DocumentResource
@@ -39,16 +40,16 @@ public class DocumentResource
     @GetMapping("/documents/{id}")
     public ResponseEntity<Document> getDocument(Long id) {
         log.debug("REST request to get Document : {}", id);
-        Document document = documentService.findById(id);
-        return ResponseEntity.ok().body(document);
+        Optional<Document> document = documentService.findById(id);
+        return ResponseEntity.ok().body(document.orElse(null));
     }
 
-    @DeleteMapping("/documents/{id}")
-    public ResponseEntity<Void> deleteDocument(@PathVariable(value = "id", required = false) final Long id) {
-        log.debug("REST request to delete Document : {}", id);
-        documentService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @DeleteMapping("/documents/{id}")
+//    public ResponseEntity<Void> deleteDocument(@PathVariable(value = "id", required = false) final Long id) {
+//        log.debug("REST request to delete Document : {}", id);
+//        documentService.delete(id);
+//        return ResponseEntity.noContent().build();
+//    }
 
 
 
